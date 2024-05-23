@@ -86,4 +86,6 @@ app.use('', router)
 app.use('/api', router)
 app.set('trust proxy', 1)
 
-app.listen(3000, () => globalThis.console.log('Server is running on port 3000'))
+app.listen(process.env.POST, () => {
+  console.log(`Example app listening at http://localhost:${process.env.POST}`);
+});
