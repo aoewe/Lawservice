@@ -87,5 +87,5 @@ app.use('/api', router)
 app.set('trust proxy', 1)
 
 app.listen(process.env.POST, () => {
-  console.log(`Example app listening at http:${process.env.HOST}::${process.env.POST}`);
+  console.log(`Example app listening at http:${process.env.HOST}:${process.env.POST}`);
 });
