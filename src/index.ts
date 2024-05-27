@@ -1,4 +1,6 @@
 import express from 'express'
+import https from 'https'
+import fs from 'fs'
 import type { RequestProps } from './types'
 import type { ChatMessage } from './chatgpt'
 import { chatConfig, chatReplyProcess, currentModel } from './chatgpt'
@@ -11,6 +13,12 @@ const router = express.Router()
 
 app.use(express.static('../public'))
 app.use(express.json())
+
+// 指定证书和密钥的位置
+const options = {
+  key: fs.readFileSync('./private.key'),
+  cert: fs.readFileSync('./full_chain.pem')
+};
 
 app.all('*', (_, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -86,4 +94,4 @@ app.use('', router)
 app.use('/api', router)
 app.set('trust proxy', 1)
 
-app.listen(process.env.POST, () => globalThis.console.log('Server is running on port 3000'))
+https.createServer(options, app).listen(process.env.PORT, () => console.log(`HTTPS Server running on port ${process.env.PORT}`));
