@@ -1,5 +1,7 @@
 # 查询Docker容器的ID: docker ps -a  ||  docker ps
 
+# docker 克隆项目: docker run -it --rm -v $(pwd):/usr/src/app -w /usr/src/app node:18 git clone https://xxxx
+
 # 进入docker容器: docker exec -it [your-id] bash    
 
 # 进入目录里的某个文件代码cd [your_file_name]
